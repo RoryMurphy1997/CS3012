@@ -1,7 +1,7 @@
 
-import           Lib
-import           Test.Hspec
-import           Test.QuickCheck
+import Lib
+import Test.Hspec
+import Test.QuickCheck
 
 
 
