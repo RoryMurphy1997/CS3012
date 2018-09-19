@@ -44,9 +44,9 @@ lca_show t n1 n2 = printf "LCA(%d,%d)=%s" n1 n2 result
                         _ -> "not found"
 
 --main = mapM print [
-            lca_show myTree 0 9,
-            lca_show myTree 0 5,
-            lca_show myTree 4 5,
-            lca_show myTree 4 6,
-            lca_show myTree 3 4,
-            lca_show myTree 2 4]
+            lca_show myTree 0 9,      #Left False
+            lca_show myTree 0 5,      #Left True
+            lca_show myTree 4 5,      #Right 2
+            lca_show myTree 4 6,      #Right 1
+            lca_show myTree 3 4,      #Right 1
+            lca_show myTree 2 4]      #Right 2
