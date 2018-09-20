@@ -1,5 +1,5 @@
 
-import Lib
+import Main
 import Test.Hspec
 import Test.QuickCheck
 

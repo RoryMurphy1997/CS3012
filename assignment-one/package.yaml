@@ -2,8 +2,8 @@ name:                assignment-one
 version:             0.1.0.0
 github:              "githubuser/assignment-one"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
+author:              "Rory Murphy"
+maintainer:          "murphr50@tcd.ie"
 copyright:           "2018 Author name here"
 
 extra-source-files:
@@ -21,7 +21,6 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-
 library:
   source-dirs: src
 
