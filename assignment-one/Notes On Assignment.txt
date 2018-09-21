@@ -1,0 +1,3 @@
+-First time using Haskell
+-First time using a functional programming language
+-First time using Stack
