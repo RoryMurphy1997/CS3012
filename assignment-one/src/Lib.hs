@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, myTree, lca, lca_show
+    ( someFunc
     ) where
 
 import Text.Printf

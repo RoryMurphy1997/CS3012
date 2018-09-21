@@ -4,8 +4,6 @@ import Test.Hspec
 import Test.QuickCheck
 
 
-
-
 spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
