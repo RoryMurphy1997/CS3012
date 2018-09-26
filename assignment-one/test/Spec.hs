@@ -24,8 +24,11 @@ spec = hspec $ do
     it "returns parent for input of its two children" $
       lca_show myTree 2 3 == 1 `shouldBe` True
 
-    it "returns parent if one of the inputs is parent and the other is a child" $
-      lca_show myTree 3 4 == 3 `shouldBe` True
+    it "returns parent if one of the inputs is parent and the other is a left child" $
+      lca_show myTree 3 6 == 3 `shouldBe` True
+
+    it "returns parent if one of the inputs is parent and the other is a right child" $
+      lca_show myTree 2 5 == 2 `shouldBe` True
 
     it "returns grandparent for input of two of its grandchildren" $
       lca_show myTree 4 7 == 1 `shouldBe` True
