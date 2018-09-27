@@ -1,23 +1,26 @@
 module Lib
-    ( someFunc
+    ( lca_show, lca,
+      Tree(..),
+      someFunc
     ) where
 
-import Text.Printf
+import           Text.Printf
 
 
 someFunc :: IO ()
 someFunc = do
-  putStrLn ( lca_show myTree 0 9)
-  putStrLn ( lca_show myTree 0 5)
-  putStrLn ( lca_show myTree 4 5)
-  putStrLn ( lca_show myTree 4 6)
-  putStrLn ( lca_show myTree 3 4)
-  putStrLn ( lca_show myTree 2 4)
+  putStrLn ( lca_show myTree' 0 9)
+  putStrLn ( lca_show myTree' 0 5)
+  putStrLn ( lca_show myTree' 4 5)
+  putStrLn ( lca_show myTree' 4 6)
+  putStrLn ( lca_show myTree' 3 4)
+  putStrLn ( lca_show myTree' 2 4)
+  putStrLn ( lca_show myTree' 5 5)
 
 data Tree a = Empty | Node a (Tree a) (Tree a) deriving Show
 
-myTree :: Tree Int
-myTree = Node 1
+myTree' :: Tree Integer
+myTree' = Node 1
     (Node 2
         (Node 4 Empty Empty)
         (Node 5 Empty Empty))
@@ -26,7 +29,7 @@ myTree = Node 1
         (Node 7 Empty Empty))
 
 
-lca :: Eq a => Tree a -> a -> a -> Either Bool a
+lca :: Tree Integer -> Integer -> Integer -> Either Bool Integer
 lca Empty _ _ = Left False
 lca (Node v tl tr) n1 n2 =
     let l = lca tl n1 n2
@@ -41,10 +44,10 @@ lca (Node v tl tr) n1 n2 =
         (Left True, _         , False) -> Left True
         (_         , Left True, False) -> Left True
         (_         , _        , True ) -> Left True
-        _ -> Left False
+        _                              -> Left False
 
-lca_show :: (Eq a, Show a, PrintfArg a) => Tree a -> a -> a -> String
+lca_show :: Tree Integer -> Integer -> Integer -> String
 lca_show t n1 n2 = printf "LCA(%d,%d)=%s" n1 n2 result
     where result = case lca t n1 n2 of
                         Right a -> show a
-                        _ -> "not found"
+                        _       -> "not found"
