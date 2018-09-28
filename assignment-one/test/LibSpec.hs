@@ -10,6 +10,15 @@ spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
 
+    it "returns Left False if passed an Empty tree" $
+      lca Empty 5 5 == Left False `shouldBe` True
+
+    it "returns Left False if passed two nodes not in tree" $
+      lca myTree 0 9 == Left False `shouldBe` True
+
+    it "returns Left True if passed one node not in tree even if the other is (Left True being sign that one of the nodes has been found)" $
+      lca myTree 0 5 == Left True `shouldBe` True
+
     it "returns the node if the same node is input twice" $
       lca myTree 5 5 == Right 5 `shouldBe` True
 
