@@ -6,6 +6,8 @@ import           Test.QuickCheck
 
 -- data Tree a = Empty | Node a (Tree a) (Tree a) deriving Show
 
+--TEST
+
 spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
