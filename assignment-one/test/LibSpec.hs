@@ -4,7 +4,6 @@ import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
 
--- data Tree a = Empty | Node a (Tree a) (Tree a) deriving Show
 
 spec :: Spec
 spec = do
