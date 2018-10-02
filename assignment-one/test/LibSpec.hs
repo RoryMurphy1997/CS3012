@@ -4,8 +4,6 @@ import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
 
--- data Tree a = Empty | Node a (Tree a) (Tree a) deriving Show
-
 spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
@@ -31,8 +29,9 @@ spec = do
     it "returns parent if one of the inputs is parent and the other is a right child" $
       lca myTree 2 5 == Right 2 `shouldBe` True
 
-    it "returns grandparent for input of two of its grandchildren" $
+    it "returns grandparent for input of two of its grandchildren for a binary search tree" $
       lca myTree 4 7 == Right 1 `shouldBe` True
+
 
 
 myTree :: Tree Integer
