@@ -32,6 +32,15 @@ spec = do
     it "returns grandparent for input of two of its grandchildren for a binary search tree" $
       lca myTree 4 7 == Right 1 `shouldBe` True
 
+    it "returns False for two unconnected nodes" $
+      lca myTree 4 7 == False `shouldBe` True
+
+    it "returns all solutions where more than one exist" $
+      lca myTree 4 7 == Right 1 `shouldBe` True
+
+    it "returns #" $
+      lca myTree 4 7 == Right 1 `shouldBe` True
+
 
 
 myTree :: Tree Integer
