@@ -1,57 +1,23 @@
 module Lib
-    ( lca_show,
+    ( empty,
       lca,
-      Tree(..),
-      someFunc
+      cons,
+      ID,
+      Path
     ) where
 
-import           Text.Printf
+type Id = Int
+data Path = [Id] :# !Int
 
+empty :: Path
+empty = [] :# 0
 
-someFunc :: IO ()
-someFunc = do
-  putStrLn ( lca_show myTree' 0 9)
-  putStrLn ( lca_show myTree' 0 5)
-  putStrLn ( lca_show myTree' 4 5)
-  putStrLn ( lca_show myTree' 4 6)
-  putStrLn ( lca_show myTree' 3 4)
-  putStrLn ( lca_show myTree' 2 4)
-  putStrLn ( lca_show myTree' 5 5)
+cons :: Id -> Path -> Path
+cons a (ys :# n) = (a:ys) :# (n + 1)
 
-data Tree a = Empty | Node a (Tree a) (Tree a) deriving Show
-
-myTree' :: Tree Integer
-myTree' = Node 1
-    (Node 2
-        (Node 4 Empty Empty)
-        (Node 5 Empty Empty))
-    (Node 3
-        (Node 6 Empty Empty)
-        (Node 7 Empty Empty))
-
-
-lca :: Tree Integer -> Integer -> Integer -> Either Bool Integer
-lca Empty _ _ = Left False
-lca (Node v tl tr) n1 n2 =
-    if n1 == n2
-    then Right 5          
-    else let l = lca tl n1 n2
-             r = lca tr n1 n2
-             onroot = v == n1 || v == n2
-         in case (l, r, onroot) of
-             (Right a  , _         , _    ) -> Right a
-             (_        , Right a   , _    ) -> Right a
-             (Left True, Left True , _    ) -> Right v
-             (Left True, _         , True ) -> Right v
-             (_        , Left True , True ) -> Right v
-             (Left True, _         , False) -> Left True
-             (_         , Left True, False) -> Left True
-             (_         , _        , True ) -> Left True
-             _                              -> Left False
-
-
-lca_show :: Tree Integer -> Integer -> Integer -> String
-lca_show t n1 n2 = printf "LCA(%d,%d)=%s" n1 n2 result
-    where result = case lca t n1 n2 of
-                        Right a -> show a
-                        _       -> "not found"
+lca :: Path -> Path -> Path
+lca (xs0 :# i) (ys0 :# j) = go k (drop (i-k) xs0) (drop (j-k) ys0) where
+  k = min i j
+  go !n xxs@(x:xs) (y:ys)
+    | x == y   = xxs :# n
+    | otherwse = go (n - 1) xs ys
