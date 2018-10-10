@@ -8,46 +8,47 @@ spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
 
-    it "returns Left False if passed an Empty tree" $
-      lca Empty 5 5 == Left False `shouldBe` True
+    it "returns empty if passed an Empty tree" $
+      lca empty empty == [] :# 0 `shouldBe` True
 
-    it "returns Left False if passed two nodes not in tree" $
-      lca myTree 0 9 == Left False `shouldBe` True
-
-    it "returns Left True if passed one node not in tree even if the other is (Left True being sign that one of the nodes has been found)" $
-      lca myTree 0 5 == Left True `shouldBe` True
+    it "returns empty if passed two nodes not in same graph" $
+      lca a f == [] :# 0 `shouldBe` True
 
     it "returns the node if the same node is input twice" $
-      lca myTree 5 5 == Right 5 `shouldBe` True
+      lca b b == [5,2,1] :# 3 `shouldBe` True
 
-    it "returns parent for input of its two children" $
-      lca myTree 2 3 == Right 1 `shouldBe` True
+    it "returns lowest common ancestor for two different paths" $
+      lca c d == [2,1] :# 2 `shouldBe` True
 
-    it "returns parent if one of the inputs is parent and the other is a left child" $
-      lca myTree 3 6 == Right 3 `shouldBe` True
+    it "returns full item 2 if path 1 is path 2's direct ancestor" $
+      lca a g == [2,1] :# 2 `shouldBe` True
 
-    it "returns parent if one of the inputs is parent and the other is a right child" $
-      lca myTree 2 5 == Right 2 `shouldBe` True
+    it "returns path 2 levels up if two given paths differe by 2 items" $
+      lca a c == [1] :# 1 `shouldBe` True
 
-    it "returns grandparent for input of two of its grandchildren for a binary search tree" $
-      lca myTree 4 7 == Right 1 `shouldBe` True
+    it "returns single lowest common ancestor when more than one ancestor exists" $
+      lca c e == Right 1 `shouldBe` True
 
-    it "returns False for two unconnected nodes" $
-      lca myTree 4 7 == False `shouldBe` True
+empty :: Path
+empty = [] :# 0
+--Paths a,b,c,d make up BST from previous solution
+a :: Path
+a = [4,2,1] :# 3
 
-    it "returns all solutions where more than one exist" $
-      lca myTree 4 7 == Right 1 `shouldBe` True
+b :: Path
+b = [5,2,1] :# 3
 
-    it "returns #" $
-      lca myTree 4 7 == Right 1 `shouldBe` True
+c :: Path
+c = [6,3,1] :# 3
 
+d :: Path
+d = [7,3,1] :# 3
 
+e :: Path
+e = [6,2,1] :# 3
 
-myTree :: Tree Integer
-myTree =  Node 1
-         (Node 2
-             (Node 4 Empty Empty)
-             (Node 5 Empty Empty))
-         (Node 3
-             (Node 6 Empty Empty)
-             (Node 7 Empty Empty))
+f :: Path
+f = [11,12,13,14] :# 4
+
+g :: Path
+g = [2,1] :# 2

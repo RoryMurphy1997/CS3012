@@ -1,8 +1,7 @@
 module Lib
     ( empty,
-      lca,
       cons,
-      ID,
+      lca,
       Path
     ) where
 
