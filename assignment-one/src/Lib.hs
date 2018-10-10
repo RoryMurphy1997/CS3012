@@ -5,6 +5,16 @@ module Lib
       Path
     ) where
 
+someFunc :: IO ()
+someFunc = do
+  putStrLn ( lca_show myTree' 0 9)
+  putStrLn ( lca_show myTree' 0 5)
+  putStrLn ( lca_show myTree' 4 5)
+  putStrLn ( lca_show myTree' 4 6)
+  putStrLn ( lca_show myTree' 3 4)
+  putStrLn ( lca_show myTree' 2 4)
+  putStrLn ( lca_show myTree' 5 5)
+
 type Id = Int
 data Path = [Id] :# !Int
 
