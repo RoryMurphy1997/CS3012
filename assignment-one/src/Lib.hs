@@ -1,9 +1,9 @@
 module Lib
-    ( empty,
-      cons,
+    ( cons,
       lca,
-      someFunc,
-      Path
+      ID,
+      Path,
+      someFunc
     ) where
 
 someFunc :: IO ()
