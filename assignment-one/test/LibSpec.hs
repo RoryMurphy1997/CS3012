@@ -14,6 +14,9 @@ spec = do
     it "returns empty if passed two nodes not in same graph" $
       lca a f == empty `shouldBe` True
 
+    it "returns nothing even if connected at end" $
+      lca d e == empty `shouldBe` True
+
     it "returns the node if the same node is input twice" $
       lca b b == b `shouldBe` True
 
@@ -26,8 +29,11 @@ spec = do
     it "returns path 2 levels up if two given paths differe by 2 items" $
       lca a c == h `shouldBe` True
 
-    it "returns single lowest common ancestor when more than one ancestor exists" $
-      lca c e == h `shouldBe` True
+    it "returns lowest common ancestor even when paths are joined further down" $
+      lca f h == i `shouldBe` True
+
+
+
 
 empty :: Path
 empty = [] :# 0
@@ -45,7 +51,7 @@ d :: Path
 d = [7,3,1] :# 3
 
 e :: Path
-e = [6,2,1] :# 3
+e = [7,8,9] :# 3
 
 f :: Path
 f = [11,12,13,14] :# 4
@@ -54,4 +60,7 @@ g :: Path
 g = [2,1] :# 2
 
 h :: Path
-h = [1] :# 1
+h = [11,15,13,14] :# 4
+
+i :: Path
+i = [13,14] :# 2
