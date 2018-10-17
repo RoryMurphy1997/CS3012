@@ -1,6 +1,6 @@
 module Lib
     ( lca,
-      Path,
+      Path(..),
       someFunc
     ) where
 
