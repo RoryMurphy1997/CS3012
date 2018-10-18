@@ -37,12 +37,17 @@ g = [2,1] :# 2
 h :: Path
 h = [11,15,13,14] :# 4
 
-i :: Path
-i = [13,14] :# 2
 
 someFunc :: IO ()
 someFunc = do
   print (lcaToString (lca a b))
+  --print (lcaToString (lca a f))
+  print (lcaToString (lca d e))
+  print (lcaToString (lca b b))
+  print (lcaToString (lca c d))
+  print (lcaToString (lca a g))
+  print (lcaToString (lca a c))
+  print (lcaToString (lca f h))
 
 cons :: Id -> Path -> Path
 cons a (ys :# n) = (a:ys) :# (n + 1)
@@ -52,6 +57,6 @@ lca (xs0 :# i) (ys0 :# j) = if(xs0 == [] || ys0 == []) then empty else go k (dro
   k = min i j
   go n xxs@(x:xs) (y:ys) = if (x==y) then xxs :# n else go (n-1) xs ys
 
-lcaToString :: Path -> [Int]
-lcaToString ((x:xs) :# n) = (x:xs)
-lcaToString empty = []
+pathToArray :: Path -> [Int]
+pathToArray ((x:xs) :# n) = (x:xs)
+pathToArray empty = []
