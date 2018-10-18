@@ -1,7 +1,9 @@
 module Lib
     ( lca,
       Path(..),
-      someFunc
+      someFunc,
+      Id,
+      lcaToString
     ) where
 
 
@@ -25,10 +27,10 @@ cons :: Id -> Path -> Path
 cons a (ys :# n) = (a:ys) :# (n + 1)
 
 lca :: Path -> Path -> Path
-lca (xs0 :# i) (ys0 :# j) = if(xs0 == [] || ys0 == []) then empty else  go k (drop (i-k) xs0) (drop (j-k) ys0) where
+lca (xs0 :# i) (ys0 :# j) = if(xs0 == [] || ys0 == []) then empty else go k (drop (i-k) xs0) (drop (j-k) ys0) where
   k = min i j
   go n xxs@(x:xs) (y:ys) = if (x==y) then xxs :# n else go (n-1) xs ys
 
 lcaToString :: Path -> [Int]
-lcaToString empty = []
 lcaToString ((x:xs) :# n) = (x:xs)
+lcaToString empty = []
