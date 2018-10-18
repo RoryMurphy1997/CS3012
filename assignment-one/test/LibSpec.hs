@@ -9,28 +9,28 @@ spec = do
   describe "Lowest Common Ancestor" $ do
 
     it "returns empty if passed an Empty tree" $
-      lca empty empty == empty `shouldBe` True
+      lcaToString(lca empty empty) == [] `shouldBe` True
 
     it "returns empty if passed two nodes not in same graph" $
-      lca a f == empty `shouldBe` True
+      lcaToString(lca a f) == [] `shouldBe` True
 
     it "returns nothing even if connected at end" $
-      lca d e == empty `shouldBe` True
+      lcaToString(lca d e) == [] `shouldBe` True
 
     it "returns the node if the same node is input twice" $
-      lca b b == b `shouldBe` True
+      lcaToString(lca b b) == lcaToString(b) `shouldBe` True
 
     it "returns lowest common ancestor for two different paths" $
-      lca c d == g `shouldBe` True
+      lcaToString(lca c d) == lcaToString(g) `shouldBe` True
 
     it "returns full item 2 if path 1 is path 2's direct ancestor" $
-      lca a g == g `shouldBe` True
+      lcaToString(lca a g) == lcaToString(g) `shouldBe` True
 
     it "returns path 2 levels up if two given paths differe by 2 items" $
-      lca a c == h `shouldBe` True
+      lcaToString(lca a c) == lcaToString(h) `shouldBe` True
 
     it "returns lowest common ancestor even when paths are joined further down" $
-      lca f h == i `shouldBe` True
+      lcaToString(lca f h) == lcaToString(i) `shouldBe` True
 
 
 

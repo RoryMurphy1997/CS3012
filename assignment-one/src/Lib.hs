@@ -12,12 +12,33 @@ data Path = [Id] :# !Int
 
 empty :: Path
 empty = [] :# 0
-
+--Paths a,b,c,d make up BST from previous solution
 a :: Path
 a = [4,2,1] :# 3
 
 b :: Path
 b = [5,2,1] :# 3
+
+c :: Path
+c = [6,3,1] :# 3
+
+d :: Path
+d = [7,3,1] :# 3
+
+e :: Path
+e = [7,8,9] :# 3
+
+f :: Path
+f = [11,12,13,14] :# 4
+
+g :: Path
+g = [2,1] :# 2
+
+h :: Path
+h = [11,15,13,14] :# 4
+
+i :: Path
+i = [13,14] :# 2
 
 someFunc :: IO ()
 someFunc = do
