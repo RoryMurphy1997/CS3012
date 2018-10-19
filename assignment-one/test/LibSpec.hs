@@ -8,29 +8,29 @@ spec :: Spec
 spec = do
   describe "Lowest Common Ancestor" $ do
 
-    it "returns empty if passed an Empty tree" $
-      pathToArray(lca empty empty) == [] `shouldBe` True
+    it "returns -1 if passed an Empty tree" $
+      lcaOfPath(lca empty empty) == -1 `shouldBe` True
 
-    it "returns empty if passed two nodes not in same graph" $
-      pathToArray(lca a f) == [] `shouldBe` True
+    it "returns -1 if passed two nodes not in same graph" $
+      lcaOfPath(lca a f) == -1 `shouldBe` True
 
-    it "returns nothing even if connected at end" $
-      pathToArray(lca d e) == [] `shouldBe` True
+    it "returns connection if connected at end" $
+      lcaOfPath(lca d e) == 7 `shouldBe` True
 
     it "returns the node if the same node is input twice" $
-      pathToArray(lca b b) == pathToArray(b) `shouldBe` True
+      lcaOfPath(lca b b) == 5 `shouldBe` True
 
     it "returns lowest common ancestor for two different paths" $
-      pathToArray(lca c d) == pathToArray(g) `shouldBe` True
+      lcaOfPath(lca c d) == 3 `shouldBe` True
 
     it "returns full item 2 if path 1 is path 2's direct ancestor" $
-      pathToArray(lca a g) == pathToArray(g) `shouldBe` True
+      lcaOfPath(lca a g) == 2 `shouldBe` True
 
     it "returns path 2 levels up if two given paths differe by 2 items" $
-      pathToArray(lca a c) == pathToArray(h) `shouldBe` True
+      lcaOfPath(lca a c) == 1 `shouldBe` True
 
     it "returns lowest common ancestor even when paths are joined further down" $
-      pathToArray(lca f h) == pathToArray(i) `shouldBe` True
+      lcaOfPath(lca f h) == 11 `shouldBe` True
 
 
 
